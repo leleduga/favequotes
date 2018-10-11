@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <title>Quote Dash</title>
+<style>
+.jumbotron{
+    background-color:rgb(200, 186, 212);
+    color:black;
+}
+.tab-content{
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding:10px;
+}
+</style>    
+</head>
+<body> 
+    <div class="container">
+        <div class="jumbotron">
+        <h3 class="m-4">Quote Dash</h3>
+        </div>
+        <h4>Register</h4>
+        <form action="/dash" method="POST">
+
+            <div class="form-group">
+                {% csrf_token %}
+                <label for="firstname">First Name:</label>
+                <input type="text" class="form-control" name="firstname" placeholder="First name">
+            </div>   
+            <div class="row">
+                <ul>
+                    {% for e in errors %}
+                        {% if e.label == "firstname" %}
+                            <li>{{e.message}}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div> 
+            <div class="form-group">
+                <label for="lastname">Last Name:</label>
+                <input type="text" class="form-control" name="lastname" placeholder="Last name">
+            </div>
+            <div class="row">
+                    <ul>
+                        {% for e in errors %}
+                            {% if e.label == "lastname" %}
+                                <li>{{e.message}}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div> 
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" class="form-control" name="email" placeholder="Email">
+            </div>
+            <div class="row">
+                    <ul>
+                        {% for e in errors %}
+                            {% if e.label == "email" %}
+                                <li>{{e.message}}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div> 
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="text" class="form-control" name="password" placeholder="Password">
+            </div>
+            <div class="row">
+                    <ul>
+                        {% for e in errors %}
+                            {% if e.label == "password" %}
+                                <li>{{e.message}}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div> 
+            <div class="form-group">
+                <label for="confirmpw">Confirm pw:</label>
+                <input type="text" class="form-control" name="confirmpw" placeholder="Confirm Password">
+            </div>
+            <div class="row">
+                    <ul>
+                        {% for e in errors %}
+                            {% if e.label == "confirmpw" %}
+                                <li>{{e.message}}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div> 
+            
+        <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+        <form action="/dash" method=POST>
+        <h4 class="m-4">Login</h4>
+            <div class="form-group">
+                {% csrf_token %}
+                <label for="email">Email:</label>
+                <input type="text" class="form-control" name="email" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="text" class="form-control" name="password" placeholder="Password">
+            </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+        
+        </form>
+        
+        
+    </div>
+</body>
+</html>
+
+

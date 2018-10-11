@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <title>Dashboard</title>
+</head>
+<body> 
+    <div class="container">
+        <a href="/editacct">Edit My Account</a> 
+        <a href="/logout">Logout</a> 
+        <div class="jumbotron">
+            <h3 class="m-4">Welcome {{user}}</h3>
+        </div>    
+
+    
+        <!-- <form action="/quotes/{{quote.id}}/dash" method="POST">   -->
+            {% csrf_token %}
+            <div class= "form group">
+                {% for quotes in quote %}
+                <textarea class="form-control" rows="5" id="">{{quotes.author}}:{{quotes.body}}</textarea> 
+                {% endfor %}     
+            </div>  
+
+        <h4>Add a Quote!</h4>
+        <form action="/userquotes" method="POST">
+
+            <div class="form-group">
+                {% csrf_token %}
+                <label for="author">Author:</label>
+                <input type="text" class="form-control" name="author" placeholder="Author">
+            </div>   
+            <div class="row">
+                <ul>
+                    {% for e in errors %}
+                        {% if e.label == "author" %}
+                            <li>{{e.message}}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div> 
+            <div class="form-group">
+                <label for="body">Quote:</label>
+                <input type="text" class="form-control" name="body" placeholder="Quote">
+            </div>
+            <div class="row">
+                <ul>
+                    {% for e in errors %}
+                        {% if e.label == "body" %}
+                            <li>{{e.message}}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div> 
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>  
+</body>
+</html>     
